@@ -75,7 +75,7 @@ hb_main(const char* conninfo)
 	/* Set Secret Number */
 	memset(number, 0x00, 5);
 	create_random_number(number);
-	elog(LOG , "number=%s\n", number);
+	elog(LOG , "hb_worker: set secret number=%s\n", number);
 
 	/* Quit after four notifies are received. */
 	nnotifies = 0;
@@ -139,7 +139,7 @@ hb_main(const char* conninfo)
 				case INVALID_COMMAND:
 				default:
 					// NOTIFY error status
-					sprintf(notify_buf, "hb_worker: NOTIFY HB_CL,'Invalid data.(%s)'", notify->extra);
+					sprintf(notify_buf, "NOTIFY HB_CL,'Invalid data.(%s)'", notify->extra);
 					PQexec(conn, notify_buf);
 					break;
 			}
